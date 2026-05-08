@@ -1,0 +1,6 @@
+{
+  "name": "TeXFix",
+  "description": "A modern LaTeX code formatter and error fixer powered by Gemini AI.",
+  "requestFramePermissions": [],
+  "majorCapabilities": []
+}
