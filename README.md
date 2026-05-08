@@ -46,3 +46,14 @@ TeXFix is a modern, high-end LaTeX code formatter and error fixer powered by Gem
 3. Review the suggested fix in the AI Fixer overlay.
 4. Click **"Apply Suggestion"** to update your source code.
 5. Use the view toggles in the header to switch between different workspace layouts.
+
+## GitHub Deployment
+
+To ensure the AI features work after deploying to GitHub:
+
+1. Go to your GitHub Repository **Settings**.
+2. Navigate to **Secrets and variables** > **Actions**.
+3. Add a **New repository secret** with Name: `GEMINI_API_KEY` and Value: `your_api_key_here`.
+4. Go to **Settings** > **Pages**.
+5. Set **Build and deployment** > **Source** to `GitHub Actions`.
+6. The site will automatically deploy on your next push to `main`.
