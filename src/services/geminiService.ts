@@ -1,7 +1,9 @@
 import { GoogleGenAI, Type } from "@google/genai";
 
 const getApiKey = () => {
-  const key = process.env.GEMINI_API_KEY;
+  // Check process.env (injected via define)
+  let key = process.env.GEMINI_API_KEY;
+  
   if (!key || key === "undefined" || key === "MY_GEMINI_API_KEY") {
     return null;
   }
