@@ -1,6 +1,15 @@
 import { GoogleGenAI, Type } from "@google/genai";
 
-const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY });
+const getApiKey = () => {
+  const key = process.env.GEMINI_API_KEY;
+  if (!key || key === "undefined" || key === "MY_GEMINI_API_KEY") {
+    return null;
+  }
+  return key;
+};
+
+const apiKey = getApiKey();
+const ai = apiKey ? new GoogleGenAI({ apiKey }) : null;
 
 export interface LatexFixResponse {
   fixedCode: string;
@@ -9,6 +18,9 @@ export interface LatexFixResponse {
 }
 
 export async function fixLatexCode(brokenCode: string): Promise<LatexFixResponse> {
+  if (!ai) {
+    throw new Error("Gemini API key is not configured. Please check your GitHub Secrets or environment variables.");
+  }
   const prompt = `You are an expert LaTeX typesetter.
 Analyze the following potentially broken LaTeX code.
 If there are errors, identify them and provide the corrected version.

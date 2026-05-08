@@ -65,8 +65,9 @@ export default function App() {
     try {
       const result = await fixLatexCode(latex);
       setSuggestion(result);
-    } catch (err) {
+    } catch (err: any) {
       console.error(err);
+      alert(err.message || "An unexpected error occurred during analysis.");
     } finally {
       setIsFixing(false);
     }
