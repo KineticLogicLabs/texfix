@@ -1,15 +1,8 @@
 import { GoogleGenAI, Type } from "@google/genai";
 
 const getApiKey = () => {
-  // Try Vite's define replacement first (standard for AI Studio)
-  let key = (process.env as any).GEMINI_API_KEY;
-  
-  // If that's empty or a placeholder, check Vite's environment variables (standard for GitHub secret injection)
-  if (!key || key === "undefined" || key === "MY_GEMINI_API_KEY" || key === "") {
-    key = import.meta.env.VITE_GEMINI_API_KEY;
-  }
-
-  if (!key || key === "undefined" || key === "MY_GEMINI_API_KEY" || key === "") {
+  const key = process.env.GEMINI_API_KEY;
+  if (!key || key === "undefined" || key === "MY_GEMINI_API_KEY") {
     return null;
   }
   return key;
